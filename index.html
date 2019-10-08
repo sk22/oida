@@ -10,7 +10,7 @@
   <body contenteditable spellcheck="false" class="oida">
     <div class="oida">oida</div>
     <script>
-      let interval;
+      let interval
       let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
       function oida() {
         return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ') + ';'
@@ -26,6 +26,10 @@
       } else {
         console.log(`don't visit ${location.origin}/#whee`)
       }
+      
+      document.body.addEventListener('keydown', () => {
+        setTimeout(location.hash = document.body.innerText);
+      })
     </script>
   </body>
 </html>
