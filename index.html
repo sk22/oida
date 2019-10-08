@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hello!</title>
+    <title>oida</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>  
-  <body>
-    <div contenteditable class="oida">
-      oida
-    </div>
+  <body contenteditable spellcheck="false">
+    <div class="oida">oida</div>
     <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        flex-direction: column;
+      }
       
-.oida {
-    font-size: 10rem;
-    padding: 2rem;
-    text-shadow: 0.25rem 0.25rem white, 0.5rem 0.5rem red, 0.75rem 0.75rem orange, 1rem 1rem yellow, 1.25rem 1.25rem green, 1.5rem 1.5rem blue, 1.75rem 1.75rem darkblue, 2rem 2rem purple;
-    font-weight: bold;
-    font-family: 'Liberation Serif', cursive;
-}
+      .oida {
+          font-size: 10rem;
+          padding: 2rem;
+          text-shadow: 0.25rem 0.25rem white, 0.5rem 0.5rem red, 0.75rem 0.75rem orange, 1rem 1rem yellow, 1.25rem 1.25rem green, 1.5rem 1.5rem blue, 1.75rem 1.75rem darkblue, 2rem 2rem purple;
+          font-weight: bold;
+          font-family: 'Liberation Serif', serif;
+      }
     
     </style>
     <script>
+      let interval;
       const elements = document.querySelectorAll('.oida')
       let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
       function oida() {
@@ -33,8 +40,10 @@
         colors = [ colors[0], ...colors.slice(2), colors[1] ]
         elements.forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
       }
-      if ()
-      let interval = setInterval(whee, 100)
+      if (location.hash === '#whee') {
+        interval = setInterval(whee, 100)
+      }
+      console.log(`don't visit ${location.href}#whee`)
     </script>
   </body>
 </html>
