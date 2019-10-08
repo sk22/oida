@@ -9,9 +9,10 @@ body {
   text-shadow: 0.25rem 0.25rem white, 0.5rem 0.5rem red, 0.75rem 0.75rem orange, 1rem 1rem yellow, 1.25rem 1.25rem green, 1.5rem 1.5rem blue, 1.75rem 1.75rem darkblue, 2rem 2rem purple;
   font-weight: bold;
   font-family: 'Liberation Serif', serif;
-  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 body > * {
-    padding: 2rem;
+  margin: 1rem;
+  padding-right: 2rem;
 }
