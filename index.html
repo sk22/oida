@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
   </head>  
   <body contenteditable spellcheck="false" class="oida">
-    <div class="oida">oida</div>
+    <div>oida</div>
     <script>
       let interval
       let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
@@ -17,19 +17,24 @@
       }
       console.log(colors)
       console.log(oida)
+      
       function whee() {
         colors = [ colors[0], ...colors.slice(2), colors[1] ]
-        document.querySelectorAll('.oida').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
-      }
-      if (location.hash === '#whee') {
-        interval = setInterval(whee, 100)
-      } else {
-        console.log(`don't visit ${location.origin}/#whee`)
+        setInterval(100, () => document.querySelectorAll('body > *').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`)))
       }
       
-      document.body.addEventListener('keydown', () => {
-        setTimeout(location.hash = document.body.innerText);
-      })
+      if (location.hash) {
+        document.querySelector('body > *').innerText = decodeURIComponent(location.hash.slice(1))
+      }
+      
+      const update = () => {
+        setTimeout(() => location.hash = document.body.innerText);
+      }
+      
+      document.body.addEventListener('keydown', update)
+      
+      let observer = new MutationObserver(update)
+        .observe(document.body, { attributes: true, childList: true, subtree: true });
     </script>
   </body>
 </html>

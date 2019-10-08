@@ -11,6 +11,7 @@ body {
   word-break: break-word;
   font-size: 10rem;
   padding-bottom: 2rem;
+  text-align: center;
 }
 
 body > * {
