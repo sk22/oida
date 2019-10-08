@@ -29,8 +29,12 @@
       }
       console.log(colors)
       console.log(oida)
-      
-      
+      function whee() {
+        colors = [ colors[0], ...colors.slice(2), colors[1] ]
+        elements.forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
+      }
+      if ()
+      let interval = setInterval(whee, 100)
     </script>
   </body>
 </html>
