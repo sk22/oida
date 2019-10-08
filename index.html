@@ -5,23 +5,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
   </head>  
   <body>
-    <h1>Hi there!</h1>
+    <div contenteditable class="oida">
+      oida
+    </div>
+    <style>
+      
+.oida {
+    font-size: 10rem;
+    padding: 2rem;
+    text-shadow: 0.25rem 0.25rem white, 0.5rem 0.5rem red, 0.75rem 0.75rem orange, 1rem 1rem yellow, 1.25rem 1.25rem green, 1.5rem 1.5rem blue, 1.75rem 1.75rem darkblue, 2rem 2rem purple;
+    font-weight: bold;
+    font-family: 'Liberation Serif', cursive;
+}
     
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+    </style>
+    <script>
+      const elements = document.querySelectorAll('.oida')
+      let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
+      function oida() {
+        return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ') + ';'
+      }
+      console.log(colors)
+      console.log(oida)
+      
+      
+    </script>
   </body>
 </html>
