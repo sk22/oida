@@ -29,7 +29,6 @@
     </style>
     <script>
       let interval;
-      const elements = document.querySelectorAll('.oida')
       let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
       function oida() {
         return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ') + ';'
@@ -38,12 +37,13 @@
       console.log(oida)
       function whee() {
         colors = [ colors[0], ...colors.slice(2), colors[1] ]
-        elements.forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
+        document.querySelectorAll('.oida').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
       }
       if (location.hash === '#whee') {
         interval = setInterval(whee, 100)
+      } else {
+        console.log(`don't visit ${location.origin}/#whee`)
       }
-      console.log(`don't visit ${location.href}#whee`)
     </script>
   </body>
 </html>
