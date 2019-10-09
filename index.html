@@ -19,8 +19,10 @@
       console.log(oida)
       
       function whee() {
-        colors = [ colors[0], ...colors.slice(2), colors[1] ]
-        setInterval(100, () => document.querySelectorAll('body > *').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`)))
+        interval = setInterval(() => {
+          colors = [ colors[0], ...colors.slice(2), colors[1] ]
+          document.querySelectorAll('body > *').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
+        }, 100)
       }
       
       if (location.hash) {
