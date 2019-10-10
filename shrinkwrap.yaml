@@ -1,0 +1,12 @@
+dependencies:
+  lodash.throttle: 4.1.1
+packages:
+  /lodash.throttle/4.1.1:
+    dev: false
+    resolution:
+      integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
+registry: 'https://registry.npmjs.org/'
+shrinkwrapMinorVersion: 9
+shrinkwrapVersion: 3
+specifiers:
+  lodash.throttle: ^4.1.1
