@@ -30,7 +30,7 @@
       }
       
       const update = () => {
-        setTimeout(() => location.hash = document.body.innerText);
+        setTimeout(() => history.replaceState(undefined, document.body.innerText, `#${document.body.innerText}`));
       }
       
       document.body.addEventListener('keydown', update)
