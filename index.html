@@ -26,8 +26,17 @@
         }, 100)
       }
       
+      const makeOida = text => {
+        const el = document.createElement('div')
+        el.className = 'oida'
+        el.innerText = text
+        return el
+      }
+      
       if (location.hash) {
-        document.querySelector('body > *').innerText = decodeURIComponent(location.hash.slice(1))
+        const text = decodeURIComponent(location.hash.slice(1))
+        document.querySelectorAll('body > *').forEach(el => el.remove())
+        text.split('\n').map(makeOida).forEach(el => document.body.appendChild(el))
       }
       
       const update = () => {
@@ -39,7 +48,7 @@
       document.body.addEventListener('keydown', throttledUpdate)
       
       let observer = new MutationObserver(throttledUpdate)
-        .observe(document.body, { attributes: true, childList: true, subtree: true });
+        .observe(document.body, { attributes: true, childList: true, subtree: true })
     </script>
   </body>
 </html>
