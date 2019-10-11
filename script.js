@@ -13,8 +13,8 @@ function whee() {
   }, 100)
 }
 
-const makeDiv = text => {
-  const el = document.createElement('div')
+const makeP = text => {
+  const el = document.createElement('p')
   el.innerText = text
   return el
 }
@@ -24,13 +24,13 @@ const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerT
 if (location.hash) {
   const text = decodeURIComponent(location.hash.slice(1))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
-  text.split('\n').map(makeDiv).forEach(el => document.body.appendChild(el))
+  text.split('\n').map(makeP).forEach(el => document.body.appendChild(el))
 }
 
-const update = () => {
-  setTimeout(() => history.replaceState(
-    undefined, document.body.innerText, `#${encodeURIComponent(document.body.innerText)}`))
-}
+const update = () => setTimeout(() => {
+  history.replaceState(
+    undefined, document.body.innerText, `#${encodeURIComponent(document.body.innerText)}`)
+})
 
 const throttledUpdate = _.debounce(update, 500, { trailing: true })
 
