@@ -22,9 +22,14 @@ const makeP = text => {
 const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerText).join('\n')
 
 if (location.hash) {
-  const text = decodeURIComponent(location.hash.slice(1))
+  const textEndPosition = location.hash.indexOf('?')
+  const text = decodeURIComponent(location.hash.slice(1, textEndPosition > 0 ? textEndPosition : undefined))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
   text.split('\n').map(makeP).forEach(el => document.body.appendChild(el))
+  
+  if (textEndPosition > 0 && location.hash.slice(textEndPosition + 1) === 'whee') {
+    whee()
+  }
 }
 
 const update = () => setTimeout(() => {
