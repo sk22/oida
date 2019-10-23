@@ -1,7 +1,7 @@
 let interval
 let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 function oida() {
-  return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ') + ';'
+  return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ')
 }
 console.log(colors)
 console.log(oida)
@@ -9,12 +9,12 @@ console.log(oida)
 function whee() {
   interval = setInterval(() => {
     colors = [ colors[0], ...colors.slice(2), colors[1] ]
-    document.querySelectorAll('body > *').forEach(e => e.setAttribute('style', `text-shadow: ${oida()};`))
+    document.querySelector('body').style.textShadow = oida()
   }, 100)
 }
 
 const makeLine = text => {
-  const el = document.createElement('p')
+  const el = document.createElement('span')
   el.innerText = text
   return el
 }
@@ -31,15 +31,17 @@ if (location.search) {
   const params = new URLSearchParams(location.search)
   if (params.get('whee') !== null) whee()
   document.body.style.fontSize = params.get('size')
+  document.body.style.background = params.get('background')
+  document.body.style.color = params.get('color')
+  colors[0] = params.get('shadow')
 }
 
 const update = () => setTimeout(() => {
-  location.hash = `#${encodeURIComponent(document.body.innerText)}`
+  location.hash = encodeURIComponent(document.body.innerText)
 })
 
 const throttledUpdate = _.debounce(update, 500, { trailing: true })
 
-document.body.addEventListener('keydown', throttledUpdate)
-
 let observer = new MutationObserver(throttledUpdate)
-  .observe(document.body, { attributes: true, childList: true, subtree: true })
+observer.observe(document.body, { attributes: false, childList: true, subtree: true })
+document.body.addEventListener('keydown', throttledUpdate)
