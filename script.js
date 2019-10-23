@@ -13,7 +13,7 @@ function whee() {
   }, 100)
 }
 
-const makeP = text => {
+const makeLine = text => {
   const el = document.createElement('p')
   el.innerText = text
   return el
@@ -24,22 +24,17 @@ const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerT
 if (location.hash) {
   const text = decodeURIComponent(location.hash.slice(1))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
-  text.split('\n').map(makeP).forEach(el => document.body.appendChild(el))
+  text.split('\n').map(makeLine).forEach(el => document.body.appendChild(el))
 }
 
 if (location.search) {
   const params = new URLSearchParams(location.search)
-  if (params.get('whee') !== null) {
-    whee()
-  }
-  if (typeof params.get('size') === 'number') {
-    document.body.style.textSize = `${params.get('size')} rem`
-  }
+  if (params.get('whee') !== null) whee()
+  document.body.style.fontSize = params.get('size')
 }
 
 const update = () => setTimeout(() => {
-  history.replaceState(
-    undefined, document.body.innerText, `#${encodeURIComponent(document.body.innerText)}`)
+  location.hash = `#${encodeURIComponent(document.body.innerText)}`
 })
 
 const throttledUpdate = _.debounce(update, 500, { trailing: true })

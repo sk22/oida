@@ -16,7 +16,7 @@ body {
 }
 
 body > * {
-  margin: 1rem;
+  margin: 0;
   padding-right: 2rem;
 }
 
