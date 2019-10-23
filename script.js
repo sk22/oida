@@ -1,5 +1,5 @@
 let interval
-const colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
+let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 const keywords = ['whee', 'hui']
 function oida() {
   return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ')
@@ -42,14 +42,6 @@ if (location.search) {
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
-  if (keywords.some(k => document.body.innerText.includes(k))) {
-    const params = getParams()
-    if (params.get('whee') === null) {
-      whee()
-      location.search = (location.search.length === 0 ? '' : '&')
-        + 'whee'
-    }
-  }
 })
 
 const throttledUpdate = _.debounce(update, 500, { trailing: true })
