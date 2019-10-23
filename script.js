@@ -6,7 +6,6 @@ function oida() {
 }
 
 const getParams = () => new URLSearchParams(location.search)
-console.log(colors)
 
 function whee() {
   if (!interval) {
@@ -50,4 +49,7 @@ let observer = new MutationObserver(throttledUpdate)
 observer.observe(document.body, { attributes: false, childList: true, subtree: true })
 document.body.addEventListener('keydown', throttledUpdate)
 
-console.log(`%cVisit ${location.origin}?whee for a more fabulous experience.`, `font-size: 1rem; text-shadow: ${oida()};`)
+if (getParams().get('whee') === null) {
+  console.log(`%cVisit ${location.origin}?whee for a more fabulous experience.`, `font-size: 130%`)
+  console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
+}
