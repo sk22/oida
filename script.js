@@ -49,3 +49,5 @@ const throttledUpdate = _.debounce(update, 500, { trailing: true })
 let observer = new MutationObserver(throttledUpdate)
 observer.observe(document.body, { attributes: false, childList: true, subtree: true })
 document.body.addEventListener('keydown', throttledUpdate)
+
+console.log(`%cVisit ${location.origin}?whee for a more fabulous experience.`, `font-size: 1rem; text-shadow: ${oida()};`)
