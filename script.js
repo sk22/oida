@@ -22,13 +22,18 @@ const makeP = text => {
 const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerText).join('\n')
 
 if (location.hash) {
-  const textEndPosition = location.hash.indexOf('?')
-  const text = decodeURIComponent(location.hash.slice(1, textEndPosition > 0 ? textEndPosition : undefined))
+  const text = decodeURIComponent(location.hash.slice(1))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
   text.split('\n').map(makeP).forEach(el => document.body.appendChild(el))
-  
-  if (textEndPosition > 0 && location.hash.slice(textEndPosition + 1) === 'whee') {
+}
+
+if (location.search) {
+  const params = new URLSearchParams(location.search)
+  if (params.get('whee') !== null) {
     whee()
+  }
+  if (typeof params.get('size') === 'number') {
+    document.body.style.textSize = `${params.get('size')} rem`
   }
 }
 
