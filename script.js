@@ -45,7 +45,7 @@ if (location.search.length > 0) {
   }
 }
 
-if (getParams().get('whee') === null || !falsey(params.get('whee'))) whee()
+if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) whee()
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
