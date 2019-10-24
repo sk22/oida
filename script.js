@@ -1,4 +1,5 @@
 let interval
+let time = 100
 let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 const keywords = ['whee', 'hui']
 function oida() {
@@ -12,7 +13,7 @@ function whee() {
     interval = setInterval(() => {
       colors = [ colors[0], ...colors.slice(2), colors[1] ]
       document.querySelector('body').style.textShadow = oida()
-    }, 100)
+    }, time)
   }
 }
 
@@ -32,13 +33,19 @@ if (location.hash) {
 
 const falsey = v => (['false', '0'].includes(v))
 
-const params = getParams()
-if (params.get('whee') === null || !falsey(params.get('whee'))) whee()
-document.body.style.fontSize = params.get('size')
-document.body.style.background = params.get('background')
-document.body.style.color = params.get('color')
-if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
-if (params.get('shadow') !== null) colors[0] = params.get('shadow')
+if (location.search.length > 0) {
+  const params = getParams()
+  document.body.style.fontSize = params.get('size')
+  document.body.style.background = params.get('background')
+  document.body.style.color = params.get('color')
+  if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
+  if (params.get('shadow') !== null) colors[0] = params.get('shadow')
+  if (params.get('time') !== null && Number(params.get('time'))) {
+    time = Number(params.get('time'))
+  }
+}
+
+if (getParams().get('whee') === null || !falsey(params.get('whee'))) whee()
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
