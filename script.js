@@ -30,15 +30,15 @@ if (location.hash) {
   text.split('\n').map(makeLine).forEach(el => document.body.appendChild(el))
 }
 
-if (location.search) {
-  const params = getParams()
-  if (params.get('whee') !== null) whee()
-  document.body.style.fontSize = params.get('size')
-  document.body.style.background = params.get('background')
-  document.body.style.color = params.get('color')
-  if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
-  if (params.get('shadow') !== null) colors[0] = params.get('shadow')
-}
+const falsey = v => (['false', '0'].includes(v))
+
+const params = getParams()
+if (params.get('whee') === null || !falsey(params.get('whee'))) whee()
+document.body.style.fontSize = params.get('size')
+document.body.style.background = params.get('background')
+document.body.style.color = params.get('color')
+if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
+if (params.get('shadow') !== null) colors[0] = params.get('shadow')
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
@@ -51,6 +51,6 @@ observer.observe(document.body, { attributes: false, childList: true, subtree: t
 document.body.addEventListener('keydown', throttledUpdate)
 
 if (getParams().get('whee') === null) {
-  console.log(`%cVisit ${location.origin}?whee for a more fabulous experience.`, `font-size: 130%`)
+  console.log(`%cVisit ${location.origin}/?whee for a more fabulous experience.`, `font-size: 130%`)
   console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
 }
