@@ -36,6 +36,7 @@ if (location.search) {
   document.body.style.fontSize = params.get('size')
   document.body.style.background = params.get('background')
   document.body.style.color = params.get('color')
+  if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
   if (params.get('shadow') !== null) colors[0] = params.get('shadow')
 }
 
