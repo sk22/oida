@@ -5,14 +5,18 @@ let unit = 'rem'
 let shadow = 'white'
 let colors = ["red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 let length = colors.length
+let editable = true
 
 const shadowMapper = (distance, color) =>
   `${`${distance}${unit} `.repeat(2)} ${color}`
 
 function oida() {
   // debugger
-  return [shadowMapper(distance, shadow), ...Array(length).fill(distance).map((n, i) => n * (i + 1))
-    .map((distance, i) => shadowMapper(distance, colors[i % colors.length])).join(', ')]
+  return Array(length + 1).fill(distance).map((distance, i) => distance * (i + 1))
+    .map((distance, i) => i === 0
+         ? shadowMapper(distance, shadow)
+         : shadowMapper(distance, colors[i % colors.length]))
+    .join(', ')
 }
 
 const getParams = () => new URLSearchParams(location.search)
@@ -61,10 +65,15 @@ if (location.search.length > 0) {
   if (params.get('unit') !== null) unit = params.get('unit')
 }
 
-if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) whee()
-else {
+if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) {
+  whee()
+} else {
   console.log(`%cVisit ${location.origin}/?whee for a more fabulous experience.`, `font-size: 130%`)
   console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
+}
+
+if (getParams().get('editable') !== null && falsey(getParams().get('editable'))) {
+  document.body.contentEditable = 'false'
 }
 
 const update = () => setTimeout(() => {
@@ -80,4 +89,5 @@ document.body.addEventListener('keydown', throttledUpdate)
 
 console.log(`%cmany options, much wow`, 'font-size: 130%')
 console.log(`${location.origin}/?size=7rem&color=white&background=black&shadow=black` +
-            `&font=Comic%20Sans%20MS,monospace&time=50&distance=3&unit=px#much%20wow`)
+            `&font=Comic%20Sans%20MS,monospace&time=50&distance=3&unit=px&length=3&editable=false` +
+            `#much%20wow`)
