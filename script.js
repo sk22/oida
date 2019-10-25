@@ -46,6 +46,10 @@ if (location.search.length > 0) {
 }
 
 if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) whee()
+else {
+  console.log(`%cVisit ${location.origin}/?whee for a more fabulous experience.`, `font-size: 130%`)
+  console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
+}
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
@@ -57,7 +61,3 @@ let observer = new MutationObserver(throttledUpdate)
 observer.observe(document.body, { attributes: false, childList: true, subtree: true })
 document.body.addEventListener('keydown', throttledUpdate)
 
-if (getParams().get('whee') === null) {
-  console.log(`%cVisit ${location.origin}/?whee for a more fabulous experience.`, `font-size: 130%`)
-  console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
-}
