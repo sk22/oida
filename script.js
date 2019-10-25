@@ -29,9 +29,7 @@ const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerT
 if (location.hash) {
   const text = decodeURIComponent(location.hash.slice(1))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
-  const lines = text.split('\n').map(makeLine)
-  lines.forEach(el => document.body.appendChild(el))
-  document.title = lines[0]
+  text.split('\n').map(makeLine).forEach(el => document.body.appendChild(el))
 }
 
 const falsey = v => (['false', '0'].includes(v))
@@ -56,6 +54,7 @@ else {
 
 const update = () => setTimeout(() => {
   location.hash = encodeURIComponent(document.body.innerText)
+  document.title = document.body.innerText.split('\n')[0] || 'oida'
 })
 
 const throttledUpdate = _.debounce(update, 500, { trailing: true })
