@@ -3,7 +3,8 @@ let time = 100
 let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 const keywords = ['whee', 'hui']
 function oida() {
-  return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100).map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ')
+  return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100)
+    .map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ')
 }
 
 const getParams = () => new URLSearchParams(location.search)
@@ -28,7 +29,9 @@ const getText = () => document.querySelectorAll('.oida > *').map(el => el.innerT
 if (location.hash) {
   const text = decodeURIComponent(location.hash.slice(1))
   document.querySelectorAll('.oida > *').forEach(el => el.remove())
-  text.split('\n').map(makeLine).forEach(el => document.body.appendChild(el))
+  const lines = text.split('\n').map(makeLine)
+  lines.forEach(el => document.body.appendChild(el))
+  document.title = lines[0]
 }
 
 const falsey = v => (['false', '0'].includes(v))
