@@ -61,3 +61,5 @@ let observer = new MutationObserver(throttledUpdate)
 observer.observe(document.body, { attributes: false, childList: true, subtree: true })
 document.body.addEventListener('keydown', throttledUpdate)
 
+console.log(`%cMany options, much wow`, 'font-size: 130%')
+console.log(`${location.origin}/?size=10rem&color=white&background=black&shadow=black&font=Comic%20Sans%20MS,monospace&time=50#much%20wow`)
