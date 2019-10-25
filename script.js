@@ -1,10 +1,13 @@
 let interval
 let time = 75
+let distance = 0.2
+let unit = 'rem'
 let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
-const keywords = ['whee', 'hui']
+let length = colors.length
+
 function oida() {
-  return Array(colors.length).fill(25).map((n, i) => n * (i + 1) / 100)
-    .map(n => `${n}rem `.repeat(2)).map((x, i) => `${x}${colors[i]}`).join(', ')
+  return Array(length).fill(distance).map((n, i) => n * (i + 1))
+    .map(n => `${n}${unit} `.repeat(2)).map((x, i) => `${x}${colors[i &]}`).join(', ')
 }
 
 const getParams = () => new URLSearchParams(location.search)
@@ -44,6 +47,10 @@ if (location.search.length > 0) {
   if (params.get('time') !== null && Number(params.get('time'))) {
     time = Number(params.get('time'))
   }
+  if (params.get('distance') !== null && Number(params.get('distance'))) {
+    distance = Number(params.get('distance'))
+  }
+  if (params.get('unit') !== null) unit = params.get('unit')
 }
 
 if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) whee()
@@ -64,4 +71,5 @@ observer.observe(document.body, { attributes: false, childList: true, subtree: t
 document.body.addEventListener('keydown', throttledUpdate)
 
 console.log(`%cmany options, much wow`, 'font-size: 130%')
-console.log(`${location.origin}/?size=7rem&color=white&background=black&shadow=black&font=Comic%20Sans%20MS,monospace&time=50#much%20wow`)
+console.log(`${location.origin}/?size=7rem&color=white&background=black&shadow=black` +
+            `&font=Comic%20Sans%20MS,monospace&time=50&distance=3&unit=px#much%20wow`)
