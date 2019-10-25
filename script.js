@@ -2,12 +2,17 @@ let interval
 let time = 75
 let distance = 0.2
 let unit = 'rem'
-let colors = ["white", "red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
+let shadow = 'white'
+let colors = ["red", "orange", "yellow", "green", "blue", "darkblue", "purple"]
 let length = colors.length
 
+const shadowMapper = (distance, color) =>
+  `${`${distance}${unit} `.repeat(2)} ${color}`
+
 function oida() {
-  return Array(length).fill(distance).map((n, i) => n * (i + 1))
-    .map(n => `${n}${unit} `.repeat(2)).map((x, i) => `${x}${colors[i &]}`).join(', ')
+  // debugger
+  return [shadowMapper(distance, shadow), ...Array(length).fill(distance).map((n, i) => n * (i + 1))
+    .map((distance, i) => shadowMapper(distance, colors[i % colors.length])).join(', ')]
 }
 
 const getParams = () => new URLSearchParams(location.search)
@@ -15,7 +20,7 @@ const getParams = () => new URLSearchParams(location.search)
 function whee() {
   if (!interval) {
     interval = setInterval(() => {
-      colors = [ colors[0], ...colors.slice(2), colors[1] ]
+      colors = [ ...colors.slice(1), colors[0] ]
       document.querySelector('body').style.textShadow = oida()
     }, time)
   }
@@ -43,9 +48,12 @@ if (location.search.length > 0) {
   document.body.style.background = params.get('background')
   document.body.style.color = params.get('color')
   if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
-  if (params.get('shadow') !== null) colors[0] = params.get('shadow')
+  if (params.get('shadow') !== null) shadow = params.get('shadow')
   if (params.get('time') !== null && Number(params.get('time'))) {
     time = Number(params.get('time'))
+  }
+  if (params.get('length') !== null && Number(params.get('length'))) {
+    length = Number(params.get('length'))
   }
   if (params.get('distance') !== null && Number(params.get('distance'))) {
     distance = Number(params.get('distance'))
