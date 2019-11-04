@@ -10,14 +10,14 @@ body {
   font-family: 'Liberation Serif', serif;
   word-break: break-word;
   font-size: 10rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   text-align: center;
   box-sizing: border-box;
 }
 
 body > * {
   margin: 0;
-  padding-right: 2rem;
+  padding-right: 1rem;
 }
 
 @media screen and (max-width: 768px) {
