@@ -57,7 +57,7 @@ if (location.search.length > 0) {
   if (params.get('time') !== null && Number(params.get('time'))) {
     time = Number(params.get('time'))
   }
-  if (params.get('length') !== null && Number(params.get('length'))) {
+  if (params.get('length') !== null && !isNaN(Number(params.get('length')))) {
     length = Number(params.get('length'))
   }
   if (params.get('distance') !== null && Number(params.get('distance'))) {
