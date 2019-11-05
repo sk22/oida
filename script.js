@@ -21,12 +21,6 @@ function oida() {
 
 const getParams = () => new URLSearchParams(location.search)
 
-const getDay = () => {
-  const today = new Date()
-  const startOfYear = new Date(today.getFullYear(), 0)
-  return (today.getTime() - startOfYear.getTime()) / 1000 / 60 / 60 / 24
-}
-
 function whee() {
   if (!interval) {
     interval = setInterval(() => {
@@ -52,9 +46,8 @@ if (location.hash) {
 
 const falsey = v => (['false', '0'].includes(v))
 
-const params = getParams()
-
 if (location.search.length > 0) {
+  const params = getParams()
   document.body.style.fontSize = params.get('size')
   document.body.style.background = params.get('background')
   document.body.style.color = params.get('color')
@@ -73,21 +66,15 @@ if (location.search.length > 0) {
   if (params.get('unit') !== null) unit = params.get('unit')
 }
 
-if (params.get('whee') === null || !falsey(params.get('whee'))) {
+if (getParams().get('whee') === null || !falsey(getParams().get('whee'))) {
   whee()
 } else {
   console.log(`%cVisit ${location.origin}/?whee for a more fabulous experience.`, `font-size: 130%`)
   console.log('%cWarning: Flashy rainbow trails.', 'color: darkred')
 }
 
-if (params.get('editable') !== null && falsey(params.get('editable'))) {
+if (getParams().get('editable') !== null && falsey(getParams().get('editable'))) {
   document.body.contentEditable = 'false'
-}
-
-if (params.get('background') === null) {
-  const color = `hsl(${getDay() / 365 * 360}, 85%, 20%)`
-  if (params.get('shadow') === null) shadow = color
-  document.body.style.background = color
 }
 
 const update = () => setTimeout(() => {
