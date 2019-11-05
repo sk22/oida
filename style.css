@@ -13,6 +13,7 @@ body {
   padding-bottom: 1rem;
   text-align: center;
   box-sizing: border-box;
+  color: white;
 }
 
 body > * {
