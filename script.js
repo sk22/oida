@@ -53,6 +53,7 @@ if (location.search.length > 0) {
   document.body.style.color = params.get('color')
   if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
   if (params.get('shadow') !== null) shadow = params.get('shadow')
+  else if (params.get('background') !== null) shadow = params.get('background')
   if (params.get('time') !== null && Number(params.get('time'))) {
     time = Number(params.get('time'))
   }
