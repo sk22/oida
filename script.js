@@ -21,13 +21,17 @@ function oida() {
 
 const getParams = () => new URLSearchParams(location.search)
 
+function cycle() {
+  document.querySelector('body').style.textShadow = oida()
+  colors = [ ...colors.slice(1), colors[0] ]
+}
+
 function whee() {
   if (!interval) {
     if (time > 0) {
-      interval = setInterval(() => {
-        colors = [ ...colors.slice(1), colors[0] ]
-        document.querySelector('body').style.textShadow = oida()
-      }, time) 
+      interval = setInterval(cycle, time) 
+    } else {
+      cycle()
     }
   }
 }
