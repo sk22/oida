@@ -54,7 +54,7 @@ if (location.search.length > 0) {
   if (params.get('font') !== null) document.body.style.fontFamily = params.get('font')
   if (params.get('shadow') !== null) shadow = params.get('shadow')
   else if (params.get('background') !== null) shadow = params.get('background')
-  if (params.get('time') !== null && Number(params.get('time'))) {
+  if (params.get('time') !== null && !isNaN(params.get('time'))) {
     time = Number(params.get('time'))
   }
   if (params.get('length') !== null && !isNaN(Number(params.get('length')))) {
