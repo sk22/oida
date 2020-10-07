@@ -28,7 +28,7 @@ function whee() {
       document.querySelector('body').style.textShadow = oida()
     }, time)
     if (time <= 0) {
-      clearInterval(time)
+      clearInterval(interval)
     }
   }
 }
