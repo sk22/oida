@@ -23,12 +23,11 @@ const getParams = () => new URLSearchParams(location.search)
 
 function whee() {
   if (!interval) {
-    interval = setInterval(() => {
-      colors = [ ...colors.slice(1), colors[0] ]
-      document.querySelector('body').style.textShadow = oida()
-    }, time)
-    if (time <= 0) {
-      clearInterval(interval)
+    if (time > 0) {
+      interval = setInterval(() => {
+        colors = [ ...colors.slice(1), colors[0] ]
+        document.querySelector('body').style.textShadow = oida()
+      }, time) 
     }
   }
 }
