@@ -96,6 +96,6 @@ observer.observe(document.body, { attributes: false, childList: true, subtree: t
 document.body.addEventListener('keydown', throttledUpdate)
 
 console.log(`%cmany options, much wow`, 'font-size: 130%')
-console.log(`${location.origin + location.pathname}/?size=7rem&color=white&background=black&shadow=black` +
+console.log(`${location.origin + location.pathname}?size=7rem&color=white&background=black&shadow=black` +
             `&font=Comic%20Sans%20MS,monospace&time=50&distance=3&unit=px&length=3&editable=false` +
             `#much%20wow`)
